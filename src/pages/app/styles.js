@@ -1,10 +1,22 @@
 import styled from 'styled-components/native'
-import { FlatList } from 'react-native';
+import PPokeball from '../../assets/svgs/pokeball'
+import Search from '../../assets/svgs/search'
+import PSearchCategorie from '../../assets/components/SearchCategorie'
+
+import { FlatList, Dimensions } from 'react-native';
 import { PText, PTitle, PSecondaryTitle } from '../../assets/global_styles'
 import { dimens, colors} from '../../assets/values'
 
 export const Container = styled.ScrollView`
     background-color: ${colors.background};
+`;
+
+export const Pokeball = styled(PPokeball).attrs({
+    width: '63%',
+})`
+    position: absolute;
+    top: -32%;
+    right: -20%;
 `;
 
 export const SearchContainer = styled.View`
@@ -19,10 +31,7 @@ export const SearchContainer = styled.View`
     elevation: 2;
 `;
 
-export const Title = styled(PTitle)`
-    align-self: flex-start;
-    margin-top: 16px;
-`;
+export const Title = styled(PTitle)``;
 
 export const SearchBar = styled.View`
     width: 100%;
@@ -32,13 +41,14 @@ export const SearchBar = styled.View`
     background-color: ${colors.background};
     border-radius: 50px;
     margin-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
 `;
 
-export const SearchIcon = styled.View`
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    margin-left: 24px;
+export const SearchIcon = styled(Search).attrs({
+    width: 21,
+    height: 21
+})`
 `; 
 
 export const SearchBarInput = styled.TextInput.attrs({
@@ -49,9 +59,10 @@ export const SearchBarInput = styled.TextInput.attrs({
     color: ${colors.text};
     font-size: ${dimens.textH4};
     font-weight: 300;
-    margin-left: 24px;
-    margin-right: 24px;
+    margin-left: 16px;
 `;
+
+export const SearchCategorie = styled(PSearchCategorie)``;
 
 export const SearchCategoriesContainer = styled.View`
     flex-direction: row;
@@ -59,30 +70,6 @@ export const SearchCategoriesContainer = styled.View`
     align-items: center;
     justify-content: center;
     margin-top: 16px;
-`;
-
-export const SearchCategorie = styled.TouchableOpacity`
-    width: 45%;
-    height: 70px;
-    flex-direction: row;
-    align-items: center;
-    background-color: ${props => props.color ? props.color : 'purple'};
-    border-radius: 20px;
-    margin-bottom: 15px;
-    margin-left: 4px;
-    margin-right: 4px;
-
-    shadow-color: ${props => props.color ? props.color : 'purple'};
-    shadow-opacity: 0.30;
-    shadow-radius: 4.65px;
-    elevation: 8;
-`;
-
-export const SearchCategorieText = styled.Text`
-    color: ${colors.textSecondary};
-    font-size: ${dimens.textH4};
-    font-weight: bold;
-    margin-left: 16px;
 `;
 
 export const PokemonNewsContainer = styled.View`

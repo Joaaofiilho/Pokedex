@@ -6,9 +6,11 @@ export const colors = {
     blue: '#54A8FC',
     yellow: '#FFCD54',
     purple: '#7B538F',
+    purpleLight: '#6A77DD',
     brawn: '#AF766A',
-    text: '#131e29',
+    text: '#131E29',
     textSecondary: '#C2C2C2',
+    textSecondaryLight: '#FEFEFEEE',
     abilities: '#366FC6'
 }
 

@@ -5,15 +5,15 @@ import { formatDate } from '../../utils/utils'
 
 import {
   Container,
+  Pokeball,
   Title,
   SearchContainer,
   SearchCategoriesContainer,
-  SearchCategorie,
-  SearchCategorieText,
   PokemonNewsContainer,
   SearchBar,
   SearchIcon,
   SearchBarInput,
+  SearchCategorie,
   SecondaryTitle,
   PokemonNewsList,
   PokemonNewsListItemContainer,
@@ -23,7 +23,7 @@ import {
   ListItemImage,
 } from './styles'
 
-export default function App(props) {
+export default function App({ navigation }) {
 
   const [news, setNews] = useState([
     {
@@ -40,45 +40,56 @@ export default function App(props) {
     }
   ])
 
+  async function onPokedexClicked() {
+    navigation.navigate('Pokedex')
+  }
+
   return (
-    <Container nestedScrollEnabled>
+    <Container>
       <SearchContainer>
-        <Title>What Pokémon{"\n"}are you looking for?</Title>
+        <Pokeball/>
+        <Title>What Pokémon are you looking for?</Title>
         <SearchBar>
           <SearchIcon/>
           <SearchBarInput placeholder={'Search Pokémon, Move, Ability etc'}/>
         </SearchBar>
         <SearchCategoriesContainer>
 
-          <SearchCategorie color={colors.green}>
-            <SearchCategorieText>Pokedex</SearchCategorieText>
-          </SearchCategorie>
-
-          <SearchCategorie color={colors.red}>
-            <SearchCategorieText>Moves</SearchCategorieText>
-          </SearchCategorie>
-
-          <SearchCategorie color={colors.blue}>
-            <SearchCategorieText>Abilities</SearchCategorieText>
-          </SearchCategorie>
-
-          <SearchCategorie color={colors.yellow}>
-            <SearchCategorieText>Items</SearchCategorieText>
-          </SearchCategorie>
-
-          <SearchCategorie color={colors.purple} last>
-            <SearchCategorieText>Locations</SearchCategorieText>
-          </SearchCategorie>
+          <SearchCategorie 
+            color={colors.green}
+            text={'Pokedex'}
+            onPress={onPokedexClicked}
+          />
           
-          <SearchCategorie color={colors.brawn} last>
-            <SearchCategorieText>Type Charts</SearchCategorieText>
-          </SearchCategorie>
+          <SearchCategorie 
+            color={colors.red}
+            text={'Moves'}
+          />
+          
+          <SearchCategorie 
+            color={colors.blue}
+            text={'Abilities'}
+          />
+          
+          <SearchCategorie 
+            color={colors.yellow}
+            text={'Items'}
+          />
+          
+          <SearchCategorie 
+            color={colors.purple}
+            text={'Locations'}
+          />
+          
+          <SearchCategorie 
+            color={colors.brawn}
+            text={'Type Charts'}
+          />
         </SearchCategoriesContainer>    
       </SearchContainer>
       <PokemonNewsContainer>
         <SecondaryTitle>Pokémon News</SecondaryTitle>
         <PokemonNewsList
-          nestedScrollEnabled
           data={news}
           keyExtractor={item => '' + item.id}
           renderItem={({item}) => {

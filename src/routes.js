@@ -3,9 +3,13 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 import App from './pages/app'
 
+// Search
+import Pokedex from './pages/pokedex'
+
 export default createAppContainer(
     createStackNavigator({
-        App
+        App,
+        Pokedex
     },
     {
         initialRouteName: 'App'

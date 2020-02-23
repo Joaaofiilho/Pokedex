@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { StatusBar } from 'react-native';
 import Routes from '../../routes'
+import { StatusBar } from './styles'
 
 export default () => 
 <>
-  <StatusBar backgroundColor='black' barStyle='light-content' />
+  <StatusBar />
   <Routes />
 </>
