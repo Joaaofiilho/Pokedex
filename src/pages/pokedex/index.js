@@ -3,7 +3,9 @@ import { colors } from '../../assets/values'
 
 import {
     StatusBar,
+    Background,
     Container,
+    Pokeball,
     MenuIcon,
     Title,
     PokemonsList,
@@ -12,7 +14,7 @@ import {
     ListItemTypeContainer,
     ListItemTextType,
     ListItemImage,
-    Pokeball,
+    ListItemPokeball,
     FilterButton,
     FilterIcon
 } from './styles'
@@ -83,15 +85,18 @@ export default function Pokedex(props) {
     ])
 
     return (
+        <>
+        <Background/>
         <Container>
             <StatusBar/>
+            <Pokeball/>
             <Title>Pokedex</Title>
             <PokemonsList
                 data={pokemons}
                 keyExtractor={item => '' + item.id}
                 renderItem={({item}) =>
                     <PokemonsListItem types={item.types}>
-                        <Pokeball/>
+                        <ListItemPokeball/>
                         <ListItemTextName>{item.name}</ListItemTextName>
                         <ListItemTypeContainer>
                             {item.types.map((type) => <ListItemTextType>{type}</ListItemTextType>)}
@@ -104,6 +109,7 @@ export default function Pokedex(props) {
                 <FilterIcon/>
             </FilterButton>
         </Container>
+        </>
     );
 }
 
@@ -111,7 +117,7 @@ Pokedex.navigationOptions = {
     headerTitle: () => null,
     headerBackTitleVisible: false,
     headerStyle: {
-        backgroundColor: colors.background,
+        backgroundColor: 'none',
         elevation: 0,
         shadowColor: 'none'
     },

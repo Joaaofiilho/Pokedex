@@ -8,6 +8,7 @@ export const colors = {
     purple: '#7B538F',
     purpleLight: '#6A77DD',
     brawn: '#AF766A',
+    gray: '#F6F6F675',
     text: '#131E29',
     textSecondary: '#C2C2C2',
     textSecondaryLight: '#FEFEFEEE',

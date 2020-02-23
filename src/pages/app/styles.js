@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+
 import PPokeball from '../../assets/svgs/pokeball'
 import Search from '../../assets/svgs/search'
 import PSearchCategorie from '../../assets/components/SearchCategorie'
@@ -12,17 +13,18 @@ export const Container = styled.ScrollView`
 `;
 
 export const Pokeball = styled(PPokeball).attrs({
-    width: '63%',
+    width: 270,
 })`
+    color: ${colors.gray};
     position: absolute;
-    top: -32%;
+    top: -40%;
     right: -20%;
 `;
 
 export const SearchContainer = styled.View`
     align-items: center;
     background-color: ${colors.secondary};
-    padding: 32px 16px 32px 16px;
+    padding: 74px 16px 32px 16px;
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
 

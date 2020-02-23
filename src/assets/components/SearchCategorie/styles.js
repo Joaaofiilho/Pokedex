@@ -33,6 +33,7 @@ export const PokeballLeft = styled(PPokeball).attrs({
     width: '70%',
     height: '150%'
 })`
+    color: ${colors.gray};
     position: absolute;
     left: -50%;
     top: -90%;
@@ -42,6 +43,7 @@ export const PokeballRight = styled(PPokeball).attrs({
     width: '65%',
     height: '150%'
 })`
+    color: ${colors.gray};
     position: absolute;
     right: -20%;
 `;

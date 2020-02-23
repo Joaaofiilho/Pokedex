@@ -10,21 +10,39 @@ import {
 } from '../../assets/global_styles'
 
 export const StatusBar = styled.StatusBar.attrs({
-    backgroundColor: colors.background,
-    barStyle: 'dark-content'
+    backgroundColor: 'transparent',
+    barStyle: 'dark-content',
+    translucent: true
 })``;
 
 export const MenuIcon = styled(Menu).attrs({
     width: 20,
     height: 20
 })`
-    margin-right: 16px;
+    margin-right: 32px;
+`;
+
+export const Background = styled.View`
+    position: absolute;
+    left: 0;
+    top: -20%;
+    width: 120%;
+    height: 100%;
+    background-color: ${colors.secondary};
 `;
 
 export const Container = styled.View`
     height: 100%;
     padding: 0 16px 16px 16px;
-    background-color: ${colors.background};
+`;
+
+export const Pokeball = styled(PPokeball).attrs({
+    width: 270
+})`
+    color: ${colors.gray};
+    position: absolute;
+    top: -212px;
+    right: -90px;
 `;
 
 export const Title = styled(PTitle)``;
@@ -100,10 +118,11 @@ export const ListItemImage = styled.Image`
     right: 8px;
 `;
 
-export const Pokeball = styled(PPokeball).attrs({
+export const ListItemPokeball = styled(PPokeball).attrs({
     width: '100%',
     height: '100%'
 })`
+    color: ${colors.gray};
     position: absolute;
     right: -20%;
     bottom: -15%;
@@ -120,7 +139,7 @@ export const FilterButton = styled.TouchableOpacity`
 
     shadow-color: #000;
     shadow-opacity: 0.51;
-    shadow-radius: 13.16;
+    shadow-radius: 13.16px;
 
     elevation: 20;
 `;
