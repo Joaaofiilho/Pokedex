@@ -44,6 +44,10 @@ export default function App({ navigation }) {
     navigation.navigate('Pokedex')
   }
 
+  async function onNewsClicked(news) {
+    navigation.navigate('News', { news })
+  }
+
   return (
     <Container>
       <SearchContainer>
@@ -94,7 +98,7 @@ export default function App({ navigation }) {
           keyExtractor={item => '' + item.id}
           renderItem={({item}) => {
             return(
-              <PokemonNewsListItemContainer>
+              <PokemonNewsListItemContainer onPress={() => onNewsClicked(item)}>
                 <PokemonNewsListItemTextContainer>
                   <ListItemTextTitle>{item.title}</ListItemTextTitle>
                   <ListItemTextDate>{formatDate(item.date)}</ListItemTextDate>

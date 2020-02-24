@@ -1,8 +1,17 @@
 import styled from 'styled-components/native'
 import { FlatList } from 'react-native';
-import Menu from '../../assets/svgs/menu'
+import PButton from '../../assets/components/Button'
+
 import PPokeball from '../../assets/svgs/pokeball'
+
+import Menu from '../../assets/svgs/menu'
 import Sliders from '../../assets/svgs/sliders'
+import Close from '../../assets/svgs/close'
+
+import Search from '../../assets/svgs/search'
+import Heart from '../../assets/svgs/heart'
+
+
 import { colors, dimens } from '../../assets/values'
 
 import { 
@@ -15,6 +24,8 @@ export const StatusBar = styled.StatusBar.attrs({
     translucent: true
 })``;
 
+export const Button = styled(PButton)``;
+
 export const MenuIcon = styled(Menu).attrs({
     width: 20,
     height: 20
@@ -26,8 +37,8 @@ export const Background = styled.View`
     position: absolute;
     left: 0;
     top: -20%;
-    width: 120%;
-    height: 100%;
+    width: 100%;
+    height: 120%;
     background-color: ${colors.secondary};
 `;
 
@@ -41,8 +52,8 @@ export const Pokeball = styled(PPokeball).attrs({
 })`
     color: ${colors.gray};
     position: absolute;
-    top: -212px;
-    right: -90px;
+    top: -210px;
+    right: -92px;
 `;
 
 export const Title = styled(PTitle)``;
@@ -129,12 +140,11 @@ export const ListItemPokeball = styled(PPokeball).attrs({
 `;
 
 export const FilterButton = styled.TouchableOpacity`
-    position: absolute;
-    right: 20px;
-    bottom: 32px;
-
     border-radius: 50px;
-    padding: 12px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
     background-color: ${colors.purpleLight};
 
     shadow-color: #000;
@@ -144,7 +154,68 @@ export const FilterButton = styled.TouchableOpacity`
     elevation: 20;
 `;
 
-export const FilterIcon = styled(Sliders).attrs({
+export const FilterIconSliders = styled(Sliders).attrs({
     width: 20,
     height: 20
+})``;
+
+export const BackgroundFilterTouchable = styled.TouchableWithoutFeedback``;
+
+export const BackgroundFilter = styled.View`
+    position: absolute;
+    left: 0;
+    top: -20%;
+    width: 100%;
+    height: 120%;
+    background-color: #585858BB;
+`;
+
+export const FilterOptionsContainer = styled.View`
+    position: absolute;
+    align-items: flex-end;
+    right: 20px;
+    bottom: 32px;
+`;
+
+export const FilterOptionButton = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 8px 16px;
+    background-color: ${colors.secondary};
+    border-radius: 50px;
+    margin-bottom: 8px;
+`;
+
+export const FilterOptionText = styled.Text`
+    color: ${colors.text};
+    font-size: ${dimens.textH4};
+    font-weight: bold;
+    margin-right: 16px;
+`;
+
+export const FilterIconFavorite = styled(Heart).attrs({
+    width: 16,
+    height: 16
+})`
+    color: ${colors.purpleLight};
+`;
+
+export const FilterIconPokeball = styled(PPokeball).attrs({
+    width: 16,
+    height: 16
+})`
+    color: ${colors.purpleLight};
+`;
+
+export const FilterIconSearch = styled(Search).attrs({
+    width: 16,
+    height: 16
+})`
+    color: ${colors.purpleLight};
+`;
+
+export const FilterIconClose = styled(Close).attrs({
+    width: 16,
+    height: 16
 })``;

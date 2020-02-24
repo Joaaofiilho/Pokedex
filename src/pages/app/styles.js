@@ -51,6 +51,7 @@ export const SearchIcon = styled(Search).attrs({
     width: 21,
     height: 21
 })`
+    color: ${colors.text};
 `; 
 
 export const SearchBarInput = styled.TextInput.attrs({

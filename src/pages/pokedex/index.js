@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { colors } from '../../assets/values'
+import { View } from 'react-native'
 
 import {
     StatusBar,
+    Button,
+    MenuIcon,
     Background,
     Container,
     Pokeball,
-    MenuIcon,
     Title,
     PokemonsList,
     PokemonsListItem,
@@ -16,11 +17,21 @@ import {
     ListItemImage,
     ListItemPokeball,
     FilterButton,
-    FilterIcon
+    FilterIconSliders,
+    BackgroundFilterTouchable,
+    BackgroundFilter,
+    FilterOptionsContainer,
+    FilterOptionButton,
+    FilterOptionText,
+    FilterIconClose,
+    FilterIconFavorite,
+    FilterIconPokeball,
+    FilterIconSearch
 } from './styles'
 
 export default function Pokedex(props) {
-
+    const FILTER_OPTION = Object.freeze({'FAVORITE_POKEMON': 1, 'TYPE': 2, 'GEN': 3, 'SEARCH': 4})
+    const [showFilterOptions, setShowFilterOptions] = useState(false)
     const [pokemons, setPokemons] = useState([
         {
             id: 0,
@@ -81,8 +92,36 @@ export default function Pokedex(props) {
             name: 'Pikachu',
             types: ['Electric'],
             image: 'https://vignette.wikia.nocookie.net/nintendo/images/7/77/Pikachu.png/revision/latest?cb=20141002082401&path-prefix=en'
-        },
+        }
     ])
+
+    async function onFilterOptionClicked(option) {
+        switch(option) {
+            case FILTER_OPTION.FAVORITE_POKEMON: 
+                //TODO: Filter favorite
+                break
+            case FILTER_OPTION.TYPE: 
+                //TODO: Filter type
+                break
+            case FILTER_OPTION.GEN: 
+                //TODO: Filter gen
+                break
+            case FILTER_OPTION.SEARCH: 
+                //TODO: Filter search
+                break
+            default:
+                break
+        }
+        hideFilterOptionsMenu()
+    }
+
+    async function toggleFilterOptionsMenu() {
+        setShowFilterOptions(!showFilterOptions)
+    }
+
+    async function hideFilterOptionsMenu() {
+        setShowFilterOptions(false)
+    }
 
     return (
         <>
@@ -105,10 +144,45 @@ export default function Pokedex(props) {
                     </PokemonsListItem>
                 }
             />
-            <FilterButton>
-                <FilterIcon/>
-            </FilterButton>
         </Container>
+        {
+            showFilterOptions ?
+                <BackgroundFilterTouchable onPress={hideFilterOptionsMenu}>
+                    <BackgroundFilter>
+                        <FilterOptionsContainer>
+                            <FilterOptionButton onPress={() => onFilterOptionClicked(FILTER_OPTION.FAVORITE_POKEMON)}>
+                                <FilterOptionText>Favorite Pokémon</FilterOptionText>
+                                <FilterIconFavorite/>
+                            </FilterOptionButton>
+                            
+                            <FilterOptionButton onPress={() => onFilterOptionClicked(FILTER_OPTION.TYPE)}>
+                                <FilterOptionText>All Type</FilterOptionText>
+                                <FilterIconPokeball/>
+                            </FilterOptionButton>
+
+                            <FilterOptionButton onPress={() => onFilterOptionClicked(FILTER_OPTION.GEN)}>
+                                <FilterOptionText>All Gen</FilterOptionText>
+                                <FilterIconPokeball/>
+                            </FilterOptionButton>
+
+                            <FilterOptionButton onPress={() => onFilterOptionClicked(FILTER_OPTION.SEARCH)}>
+                                <FilterOptionText>Search</FilterOptionText>
+                                <FilterIconSearch/>
+                            </FilterOptionButton>
+
+                            <FilterButton onPress={toggleFilterOptionsMenu}>
+                                <FilterIconClose/>
+                            </FilterButton>
+                        </FilterOptionsContainer>
+                    </BackgroundFilter>
+                </BackgroundFilterTouchable>
+            :
+                <FilterOptionsContainer>
+                    <FilterButton onPress={toggleFilterOptionsMenu}>
+                        <FilterIconSliders/>
+                    </FilterButton>
+                </FilterOptionsContainer>
+        }
         </>
     );
 }
@@ -122,6 +196,10 @@ Pokedex.navigationOptions = {
         shadowColor: 'none'
     },
     headerRight: () => {
-        return <MenuIcon/>
+        return (
+            <Button>
+                <MenuIcon/>
+            </Button>
+        )
     }
 }

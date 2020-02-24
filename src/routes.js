@@ -6,10 +6,14 @@ import App from './pages/app'
 // Search
 import Pokedex from './pages/pokedex'
 
+//News
+import News from './pages/news'
+
 export default createAppContainer(
     createStackNavigator({
         App,
-        Pokedex
+        Pokedex,
+        News
     },
     {
         initialRouteName: 'App'
