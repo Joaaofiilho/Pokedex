@@ -5,7 +5,7 @@ import Search from '../../assets/svgs/search'
 import PSearchCategorie from '../../assets/components/SearchCategorie'
 
 import { FlatList, Dimensions } from 'react-native';
-import { PText, PTitle, PSecondaryTitle } from '../../assets/global_styles'
+import { PText, PTitle, PSecondaryTitle, ListSeparator } from '../../assets/global_styles'
 import { dimens, colors} from '../../assets/values'
 
 export const Container = styled.ScrollView`
@@ -82,16 +82,9 @@ export const PokemonNewsContainer = styled.View`
 
 export const SecondaryTitle = styled(PSecondaryTitle)``;
 
-const PokemonNewsListSeparator = styled.View`
-    border-width: 1px;
-    border-color: #F1F1F1;
-    border-radius: 50px;
-    margin-top: 16px;
-`;
-
 export const PokemonNewsList = styled(FlatList).attrs({
     scrollEnabled: false,
-    ItemSeparatorComponent: PokemonNewsListSeparator
+    ItemSeparatorComponent: ListSeparator
 })``;
 
 export const PokemonNewsListItemContainer = styled.TouchableOpacity`

@@ -34,3 +34,9 @@ export const PTextPokemonType = styled.Text.attrs({
     margin-top: 4px;
 `;
 
+export const ListSeparator = styled.View`
+    border-width: 1px;
+    border-color: #F1F1F1;
+    border-radius: 50px;
+    margin-top: 16px;
+`;

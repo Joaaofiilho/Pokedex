@@ -1,18 +1,61 @@
 import React from 'react';
 import styled from 'styled-components/native'
 
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform, FlatList, Animated } from 'react-native';
 import { TabView, TabBar as PTabBar } from 'react-native-tab-view'
 
 import { getColorFromPokemonTypes } from '../../utils/utils'
 
-import { PTextPokemonType } from '../../assets/global_styles'
+import { PTextPokemonType, ListSeparator } from '../../assets/global_styles'
 
 import PButton from '../../assets/components/Button'
 import { PText, PTitle } from '../../assets/global_styles'
 import { colors, dimens } from '../../assets/values'
 
 import HeartOutlined from '../../assets/svgs/heart_outlined'
+import ArrowRight from '../../assets/svgs/arrow_right'
+
+//Background
+import Pokeball from '../../assets/svgs/pokeball'
+import Square from '../../assets/svgs/background_square'
+import ThreeDots from '../../assets/svgs/three_dots'
+
+export const BackgroundSquare = styled(Square).attrs({
+    width: 170,
+    height: 170
+})`
+    position: absolute;
+    left: -65px;
+    top: -170px;
+    color: ${colors.grayLight};
+    transform: rotate(65deg);
+`;
+
+export const DotsIcons = styled(ThreeDots).attrs({
+    width: 20,
+    height: 18
+})`
+    color: ${colors.grayLight};
+    margin-bottom: -8px;
+`;
+
+export const BackgroundDots = styled.View`
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 40px;
+    position: absolute;
+    right: 80px;
+    top: -80px;
+`;
+
+export const BackgroundPokeball = styled(Pokeball).attrs({
+    width: 220,
+})`
+    position: absolute;
+    align-self: center;
+    top: 35px;
+    color: ${colors.grayLight};
+`;
 
 export const StatusBar = styled.StatusBar.attrs({
     backgroundColor: 'transparent',
@@ -238,6 +281,59 @@ export const BasicStatsText = styled.Text`
     margin-top: 16px;
 `;
 
+//Evolution page
+export const EvolutionTitleText = styled(AboutTitleText)``;
+
+export const EvolutionList = styled(FlatList).attrs({
+    ItemSeparatorComponent: ListSeparator
+})`
+    margin-top: 16px;
+`;
+
+export const EvolutionListItemContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0 16px 0;
+`;
+
+export const EvolutionListItemSubContainer = styled.View`
+    align-items: center;
+`;
+
+export const EvolutionListItemPokemonImage = styled.Image`
+    width: 75px;
+    height: 75px;
+    resizeMode: contain;
+`;
+
+export const EvolutionText = styled(AboutText)`
+    margin-top: 8px;
+`;
+
+export const EvolutionArrowText = styled(EvolutionText)`
+    font-size: ${dimens.textH6};
+`;
+
+export const EvolutionArrowRightIcon = styled(ArrowRight).attrs({
+    width: 20,
+    height: 20
+})`
+    color: ${colors.textSecondary};
+`;
+
+//Moves page
+export const MovesPageContainer = styled(InfoPageContainer)`
+    margin-top: 100px;
+    align-items: center;
+`;
+
+export const MovesText = styled(PText)`
+    font-size: ${dimens.textH3};
+    font-weight: bold;
+`;
+
+//Failure screen
 export const ContainerFailure = styled.View`
     width: 100%;
     height: 100%;

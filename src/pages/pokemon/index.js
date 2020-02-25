@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dimensions } from 'react-native';
+import { Animated } from 'react-native';
 
 import { colors } from '../../assets/values'
 import { formatPokemonId } from '../../utils/utils'
@@ -10,6 +10,10 @@ import {
     Button,
     FavoriteIcon,
     Background,
+    BackgroundSquare,
+    BackgroundPokeball,
+    BackgroundDots,
+    DotsIcons,
     Container,
     ContainerTitleId,
     Title,
@@ -41,6 +45,18 @@ import {
     BasicStatsProgressBar,
     BaseStatsTitleText,
     BasicStatsText,
+    //Evolution page
+    EvolutionTitleText,
+    EvolutionList,
+    EvolutionListItemContainer,
+    EvolutionListItemSubContainer,
+    EvolutionListItemPokemonImage,
+    EvolutionText,
+    EvolutionArrowText,
+    EvolutionArrowRightIcon,
+    //Moves page
+    MovesPageContainer,
+    MovesText,
     //Failure screen
     ContainerFailure,
     TryAgainText,
@@ -49,8 +65,6 @@ import {
 } from './styles'
 
 export default function Pokemon({ navigation }) {
-
-    // const [position] = useState(() => new Animated.Value(0))
 
     const [pageSelected, setPageSelected] = useState(0)
     const [routes] = React.useState([
@@ -61,6 +75,9 @@ export default function Pokemon({ navigation }) {
     ]);
     const [selectedPokemon, setSelectedPokemon] = useState(null)
     const [pokemons, setPokemons] = useState([])
+    const [baseStats, setBaseStats] = useState(null)
+    const [evolutionChain, setEvolutionChain] = useState(null)
+    const [megaEvolutionChain, setMegaEvolutionChain] = useState(null)
 
     const AboutPage = () => (
         <InfoPageContainer>
@@ -110,56 +127,56 @@ export default function Pokemon({ navigation }) {
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>HP</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>45</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={45/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.hp : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.hp/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Attack</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>60</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={60/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.attack : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.attack/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Defense</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>48</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={48/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.defense : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.defense/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Sp. Attack</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>65</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={65/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.spAtk : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.spAtk/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Sp. Def</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>65</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={65/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.spDef : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.spDef/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Speed</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>45</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={45/100}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.speed : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.speed/100 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
 
                 <BaseStatsSubContainer>
                     <BaseStatsSubTitleText>Total</BaseStatsSubTitleText>
                     <BaseStatsProgressBarContainer>
-                        <BasicStatsProgressText>317</BasicStatsProgressText>
-                        <BasicStatsProgressBar progress={317/600}/>
+                        <BasicStatsProgressText>{ baseStats ? baseStats.total : 0}</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={baseStats ? baseStats.total/600 : 0}/>
                     </BaseStatsProgressBarContainer>
                 </BaseStatsSubContainer>
             </BaseStatsContainer>
@@ -170,14 +187,68 @@ export default function Pokemon({ navigation }) {
 
     const EvolutionPage = () => (
         <InfoPageContainer>
+            <EvolutionTitleText>Evolution Chain</EvolutionTitleText>
+            <EvolutionList
+                data={evolutionChain}
+                keyExtractor={(item) => '' + item.id}
+                renderItem={({ item }) => {
+                    return (
+                        <EvolutionListItemContainer>
 
+                            <EvolutionListItemSubContainer>
+                                <EvolutionListItemPokemonImage source={{ uri: item.pokemon.image }}/>
+                                <EvolutionText>{item.pokemon.name}</EvolutionText>
+                            </EvolutionListItemSubContainer>
+
+                            <EvolutionListItemSubContainer>
+                                <EvolutionArrowRightIcon/>
+                                <EvolutionArrowText>Lvl {item.level}</EvolutionArrowText>
+                            </EvolutionListItemSubContainer>
+
+                            <EvolutionListItemSubContainer>
+                                <EvolutionListItemPokemonImage source={{ uri: item.evolvesTo.image }}/>
+                                <EvolutionText>{item.evolvesTo.name}</EvolutionText>
+                            </EvolutionListItemSubContainer>
+
+                        </EvolutionListItemContainer>
+                    )
+                }}
+            />
+
+            <EvolutionTitleText>Mega Evolution</EvolutionTitleText>
+            <EvolutionList
+                data={megaEvolutionChain}
+                keyExtractor={(item) => '' + item.id}
+                renderItem={({ item }) => {
+                    return (
+                        <EvolutionListItemContainer>
+
+                            <EvolutionListItemSubContainer>
+                                <EvolutionListItemPokemonImage source={{ uri: item.pokemon.image }}/>
+                                <EvolutionText>{item.pokemon.name}</EvolutionText>
+                            </EvolutionListItemSubContainer>
+
+                            <EvolutionListItemSubContainer>
+                                <EvolutionArrowRightIcon/>
+                                <EvolutionArrowText>{item.name}</EvolutionArrowText>
+                            </EvolutionListItemSubContainer>
+
+                            <EvolutionListItemSubContainer>
+                                <EvolutionListItemPokemonImage source={{ uri: item.evolvesTo.image }}/>
+                                <EvolutionText>{item.evolvesTo.name}</EvolutionText>
+                            </EvolutionListItemSubContainer>
+
+                        </EvolutionListItemContainer>
+                    )
+                }}
+            />
         </InfoPageContainer>
       );
       
     const MovesPage = () => (
-        <InfoPageContainer>
-
-        </InfoPageContainer>
+        <MovesPageContainer>
+            <MovesText>Coming soon</MovesText>
+        </MovesPageContainer>
     );
 
     async function fetchPokemons() {
@@ -244,6 +315,70 @@ export default function Pokemon({ navigation }) {
             }
         ])
 
+        setBaseStats({
+            hp: 45,
+            attack: 60,
+            defense: 48,
+            spAtk: 65,
+            spDef: 65,
+            speed: 45,
+            total: 317
+        })
+
+        setEvolutionChain([
+            {
+                id: 0,
+                level: 16,
+                pokemon: {
+                    id: 1,
+                    name: 'Bulbassour',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://vignette.wikia.nocookie.net/nintendo/images/4/43/Bulbasaur.png/revision/latest/scale-to-width-down/310?cb=20141002083518&path-prefix=en'
+                },
+                evolvesTo: {
+                    id: 2,
+                    name: 'Ivysaur',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://vignette.wikia.nocookie.net/nintendo/images/8/86/Ivysaur.png/revision/latest?cb=20141002083450&path-prefix=en'
+                }
+            },
+            {
+                id: 1,
+                level: 34,
+                pokemon: {
+                    id: 2,
+                    name: 'Ivysaur',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://vignette.wikia.nocookie.net/nintendo/images/8/86/Ivysaur.png/revision/latest?cb=20141002083450&path-prefix=en'
+                },
+                evolvesTo: {
+                    id: 3,
+                    name: 'Venusaur',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://vignette.wikia.nocookie.net/nintendo/images/b/be/Venusaur.png/revision/latest?cb=20141002083423&path-prefix=en'
+                }
+            }
+        ])
+
+        setMegaEvolutionChain([
+            {
+                id: 0,
+                name: 'Mega Stone',
+                pokemon: {
+                    id: 3,
+                    name: 'Venusaur',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://vignette.wikia.nocookie.net/nintendo/images/b/be/Venusaur.png/revision/latest?cb=20141002083423&path-prefix=en'
+                },
+                evolvesTo: {
+                    id: 4,
+                    name: 'Mega Venusaur',
+                    types: ['Grass', 'Poison'],
+                    image: 'https://1.bp.blogspot.com/-R9xHKHZfl2c/VYcEy7bvvCI/AAAAAAAAbdw/oZeD09GAMfU/s1600/003Venusaur-Mega_XY_anime.png'
+                }
+            }
+        ])
+
         let selectedPokemon = navigation.state.params.pokemonId
         setSelectedPokemon(selectedPokemon ? selectedPokemon-1 : 0)
     }
@@ -252,15 +387,20 @@ export default function Pokemon({ navigation }) {
         fetchPokemons()
     }, [])
 
-    // const marginLeft = Animated.interpolate(position, {
-    //     inputRange: [0, 1],
-    //     outputRange: [16, (Dimensions.get('window').width - 32)/3]
-    // });
-
     return (
         <>
         <StatusBar/>
         <Background types={pokemons[selectedPokemon] ? pokemons[selectedPokemon].types : null}/>
+        <BackgroundSquare/>
+        <BackgroundDots>
+            <DotsIcons/>
+            <DotsIcons/>
+            <DotsIcons/>
+            <DotsIcons/>
+            <DotsIcons/>
+            <DotsIcons/>
+        </BackgroundDots>
+        <BackgroundPokeball/>
         {
             pokemons[selectedPokemon] ?
                 <Container>
