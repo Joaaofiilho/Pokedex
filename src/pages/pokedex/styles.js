@@ -1,4 +1,7 @@
 import styled from 'styled-components/native'
+import { getColorFromPokemonTypes } from '../../utils/utils'
+import { PTextPokemonType } from '../../assets/global_styles'
+
 import { FlatList } from 'react-native';
 import PButton from '../../assets/components/Button'
 
@@ -72,22 +75,7 @@ export const PokemonsListItem = styled.TouchableOpacity`
     width: 45%;
     height: 115px;
     border-radius: 20px;
-    background-color: ${props => {
-        return (
-            props.types ?
-                props.types.includes('Grass') ?
-                    colors.green
-                : props.types.includes('Fire') ?
-                    colors.red
-                : props.types.includes('Water') ?
-                    colors.blue
-                : props.types.includes('Electric') ?
-                    colors.yellow
-                : null
-            :
-                null
-        )
-    }};
+    background-color: ${props => getColorFromPokemonTypes(props.types)};
     padding: 12px;
     margin-top: 12px;
     overflow: hidden;
@@ -107,18 +95,7 @@ export const ListItemTypeContainer = styled.View`
     margin-top: 4px;
 `;
 
-export const ListItemTextType = styled.Text.attrs({
-    numberOfLines: 1
-})`
-    width: 40%;
-    color: ${colors.textSecondaryLight};
-    text-align: center;
-    font-size: ${dimens.textH6};
-    background-color: #FAFAFA44;
-    padding: 2px 8px 2px 8px;
-    border-radius: 50px;
-    margin-top: 4px;
-`;
+export const ListItemTextType = styled(PTextPokemonType)``;
 
 export const ListItemImage = styled.Image`
     width: 60%;
