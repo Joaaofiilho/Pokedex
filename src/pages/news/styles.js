@@ -16,8 +16,7 @@ export const Container = styled.ScrollView.attrs({
     contentContainerStyle: {
         paddingStart: 16
     }
-})`
-`;
+})``;
 
 export const Image = styled.Image`
     width: ${Dimensions.get('window').width - 16}px;
@@ -28,7 +27,7 @@ export const Image = styled.Image`
 `;
 
 export const Title = styled(PTitle)`
-    width: 100%;
+    margin-right: 16px;
 `;
 
 export const DateText = styled.Text`

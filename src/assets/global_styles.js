@@ -16,5 +16,27 @@ export const PTitle = styled(PText)`
 `;
 
 export const PSecondaryTitle = styled(PTitle)`
-    font-size: ${dimens.textH2}
+    font-size: ${dimens.textH2};
+`;
+
+export const PTextPokemonType = styled.Text.attrs({
+    numberOfLines: 1
+})`
+    max-width: 50%;
+    align-self: flex-start;
+    color: ${colors.textSecondaryLight};
+    text-align: center;
+    font-size: ${dimens.textH6};
+    font-weight: bold;
+    background-color: #FAFAFA44;
+    padding: 4px 12px 4px 12px;
+    border-radius: 50px;
+    margin-top: 4px;
+`;
+
+export const ListSeparator = styled.View`
+    border-width: 1px;
+    border-color: #F1F1F1;
+    border-radius: 50px;
+    margin-top: 16px;
 `;
