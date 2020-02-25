@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Animated from 'react-native-reanimated'
 import { Dimensions } from 'react-native';
 
 import { colors } from '../../assets/values'
@@ -33,6 +32,16 @@ import {
     AboutBreedingGenderInfoContainer,
     AboutBreedingSubTitleText,
     AboutBreedingText,
+    //Basic Stats page
+    BaseStatsContainer,
+    BaseStatsSubContainer,
+    BaseStatsSubTitleText,
+    BaseStatsProgressBarContainer,
+    BasicStatsProgressText,
+    BasicStatsProgressBar,
+    BaseStatsTitleText,
+    BasicStatsText,
+    //Failure screen
     ContainerFailure,
     TryAgainText,
     TryAgainButton,
@@ -97,7 +106,65 @@ export default function Pokemon({ navigation }) {
       
     const BaseStatsPage = () => (
         <InfoPageContainer>
+            <BaseStatsContainer>
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>HP</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>45</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={45/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
 
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Attack</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>60</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={60/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Defense</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>48</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={48/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Sp. Attack</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>65</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={65/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Sp. Def</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>65</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={65/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Speed</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>45</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={45/100}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+
+                <BaseStatsSubContainer>
+                    <BaseStatsSubTitleText>Total</BaseStatsSubTitleText>
+                    <BaseStatsProgressBarContainer>
+                        <BasicStatsProgressText>317</BasicStatsProgressText>
+                        <BasicStatsProgressBar progress={317/600}/>
+                    </BaseStatsProgressBarContainer>
+                </BaseStatsSubContainer>
+            </BaseStatsContainer>
+            <BaseStatsTitleText>Type defenses</BaseStatsTitleText>
+            <BasicStatsText>The effectiveness of each type of this Pokémon!</BasicStatsText>
         </InfoPageContainer>
     );
 

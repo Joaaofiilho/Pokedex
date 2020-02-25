@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native'
 
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import { TabView, TabBar as PTabBar } from 'react-native-tab-view'
 
 import { getColorFromPokemonTypes } from '../../utils/utils'
@@ -123,7 +123,7 @@ export const InfoTabView = styled(TabView).attrs({
 `;
 
 export const InfoPageContainer = styled.View`
-    padding: 16px;
+    padding: 16px 32px 16px 32px;
     min-height: 500px;
 `;
 
@@ -189,6 +189,53 @@ export const AboutBreedingSubTitleText = styled(AboutSubTitleText)`
 
 export const AboutBreedingText = styled(AboutText)`
     flex: 6;
+`;
+
+//Base Stats page
+export const BaseStatsContainer = styled(AboutBreedingContainer)``;
+
+export const BaseStatsSubContainer = styled(AboutBreedingSubContainer)`
+    flex: 1;
+`;
+
+export const BaseStatsSubTitleText = styled(AboutSubTitleText)`
+    flex: 3.5;
+`;
+
+export const BaseStatsProgressBarContainer = styled.View`
+    flex: 6.5;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const BasicStatsProgressText = styled(PText)`
+    font-size: ${dimens.textH5};
+    font-weight: bold;
+`;
+
+export const BasicStatsProgressBar = Platform.OS === 'ios' ?
+    styled.ProgressViewIOS.attrs({
+
+    })`
+        width: 80%;
+    `
+    :
+    styled.ProgressBarAndroid.attrs({
+        styleAttr: 'Horizontal',
+        indeterminate: false
+    })`
+        width: 80%;
+        color: ${props => props.progress >= 0.5 ? colors.green : colors.red};
+    `;
+    
+export const BaseStatsTitleText = styled(AboutTitleText)``;
+
+export const BasicStatsText = styled.Text`
+    color: ${colors.textSecondary};
+    font-size: ${dimens.textH5};
+    font-weight: bold;
+    margin-top: 16px;
 `;
 
 export const ContainerFailure = styled.View`
