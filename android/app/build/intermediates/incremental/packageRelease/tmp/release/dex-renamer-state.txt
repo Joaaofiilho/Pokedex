@@ -1,0 +1,4 @@
+#Tue Feb 25 20:31:19 GFT 2020
+base.0=D\:\\meus_projetos\\react_native\\Pokedex\\android\\app\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
